@@ -2,7 +2,9 @@
 title: "gdp_worldbank_cs1"
 author: "mcdevitt"
 date: "4 mars 2017"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 
@@ -13,7 +15,12 @@ knitr::opts_chunk$set(echo = TRUE)
 library(repmis)
 library(RCurl)
 library(methods)
+library(ggplot2)
+library(pastecs)
 
+require (reshape2)
+require (xtable)
+require (ascii)
 
 # ...	-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 # ...		- some data sets
@@ -93,7 +100,43 @@ sort_gdp_edu <- gdp_edu[order(gdp_edu$economy_dollars),]
 
 
 high_income_OECD <- gdp_edu[gdp_edu$Income.Group == "High income: OECD",]
+mean_oecd <-mean(high_income_OECD$rank)
 
+high_income_nonOECD <- gdp_edu[gdp_edu$Income.Group == "High income: nonOECD",]
+mean_nonoecd <-mean(high_income_nonOECD$rank)
+
+
+# ...	-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+# ...	distributional plots
+# ...	-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
+ggplot(gdp_edu, aes(x = country_code, y = log10(economy_dollars), shape = Income.Group, color = Income.Group )) + geom_point()
+
+ggplot(gdp_edu, aes(x = Income.Group, y = log10(economy_dollars), fill = Income.Group)) + geom_boxplot() +
+    guides(fill=FALSE)
+
+ggplot(gdp_edu, aes(x = log10(economy_dollars), fill =  Income.Group)) + geom_density(alpha=.3)
+
+
+# ...	-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+# ...	summary statistics
+# ...	-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+library('dplyr')
+
+xxx <- gdp_edu %>% group_by(Income.Group) %>% summarize(
+				n_pays = length(Income.Group),
+				min_gdp = min(economy_dollars),
+				qtr_01 = quantile(economy_dollars)[[2]],
+				mean_gdp = mean(economy_dollars),
+				qtr_03 = quantile(economy_dollars)[[4]],
+				max_gdp = max(economy_dollars),
+				stdev = sd(economy_dollars))
+				
+sort_xxx <- xxx[order(xxx$mean_gdp),] 
+				
+sort_xxx
 
 ```
 
