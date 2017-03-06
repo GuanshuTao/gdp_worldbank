@@ -2,9 +2,7 @@
 title: "gdp_worldbank_cs1"
 author: "mcdevitt"
 date: "4 mars 2017"
-output:
-  pdf_document: default
-  html_document: default
+output: html_document
 ---
 
 
@@ -21,6 +19,14 @@ library(pastecs)
 require (reshape2)
 require (xtable)
 require (ascii)
+
+```
+
+
+## R Markdown
+
+
+```{r read_data, message = FALSE}
 
 # ...	-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 # ...		- some data sets
@@ -105,10 +111,15 @@ mean_oecd <-mean(high_income_OECD$rank)
 high_income_nonOECD <- gdp_edu[gdp_edu$Income.Group == "High income: nonOECD",]
 mean_nonoecd <-mean(high_income_nonOECD$rank)
 
+```
 
-# ...	-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-# ...	distributional plots
-# ...	-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-  
+__Distributional plots__  
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-  
+
+
+```{r echo = FALSE, message = FALSE}
 
 
 ggplot(gdp_edu, aes(x = country_code, y = log10(economy_dollars), shape = Income.Group, color = Income.Group )) + geom_point()
@@ -118,10 +129,14 @@ ggplot(gdp_edu, aes(x = Income.Group, y = log10(economy_dollars), fill = Income.
 
 ggplot(gdp_edu, aes(x = log10(economy_dollars), fill =  Income.Group)) + geom_density(alpha=.3)
 
+```
+
 
 # ...	-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 # ...	summary statistics
 # ...	-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+```{r echo = FALSE, message = FALSE}
 
 library('dplyr')
 
@@ -140,5 +155,38 @@ sort_xxx
 
 ```
 
-## R Markdown
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-  
+__Quartile Summary__  
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-  
+
+sort_gdp_edu_by_rank <- gdp_edu[order(gdp_edu$rank),] 
+
+
+n_ranks <- dim(gdp_edu)[1]
+
+quint <- c(0 : (n_ranks-1))
+
+quint <- as.integer(quint/(n_ranks/5) ) + 1
+
+sort_gdp_edu_by_rank <- cbind (sort_gdp_edu_by_rank, quint)
+
+hgh_rank_lower_middle_income <- sort_gdp_edu_by_rank[
+										sort_gdp_edu_by_rank$Income.Group == "Lower middle income"
+										& quint == 1,]
+
+
+hr_lmi <- sort_gdp_edu_by_rank %>% group_by(quint, Income.Group) %>% summarize(
+				n_pays = length(Income.Group))
+
+sort_hr_lmi <- hr_lmi[order(hr_lmi$n_pays),] 
+				
+sort_hr_lmi
+
+
+
+
+
+
+
 
