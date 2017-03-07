@@ -183,6 +183,28 @@ sort_hr_lmi <- hr_lmi[order(hr_lmi$n_pays),]
 				
 sort_hr_lmi
 
+# ... -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-  
+# ... some aggregation ideas ... 
+# ... -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-  
+#agg_dan_dina <- aggregate(dan_dina[c("Applied.Hours","Total.Hours")],
+#						  by = list(dan_dina$Name, dan_dina$Actual.Week),
+#						  FUN = sum,
+#						  na.rm= TRUE)
+#agg_dan_dina$wkly_yield <- agg_dan_dina$Applied.Hours / agg_dan_dina$Total.Hours
+#agg_ytd_each <- aggregate(agg_dan_dina[c("Applied.Hours","Total.Hours")],
+#						  by = list(agg_dan_dina$Group.1),
+#						  FUN = sum,
+#						  na.rm= TRUE)
+#agg_ytd_each$ytd_yield <- agg_ytd_each$Applied.Hours / agg_ytd_each$Total.Hours
+# all together
+#agg2_dan_dina <- aggregate(agg_dan_dina[c("Applied.Hours","Total.Hours")],
+#						   by = list(agg_dan_dina$Group.2),
+#						   FUN = sum,
+#						   na.rm= TRUE)
+#agg2_dan_dina$wkly_yield <- agg2_dan_dina$Applied.Hours / agg2_dan_dina$Total.Hours
+#overall_yield <- sum(agg2_dan_dina$Applied.Hours) / sum(agg2_dan_dina$Total.Hours)
+#names <- unique(agg_dan_dina$Group.1)
+
 
 
 
