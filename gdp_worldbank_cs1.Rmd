@@ -3,8 +3,9 @@ title: "gdp_worldbank_cs1"
 author: "mcdevitt"
 date: "4 mars 2017"
 output: html_document
+toc: true
+keep_md: true
 ---
-
 
 
 ```{r setup, include=FALSE}
@@ -102,6 +103,18 @@ edu[5:width] <- NULL
 
 gdp_edu <- merge(gdp, edu, by.x = "country_code", by.y = "CountryCode")
 
+#gdp_edu[gdp_edu$Income.Group == "High income: OECD",]$Income.Group <- "1_High_   OECD" 
+#gdp_edu[gdp_edu$Income.Group == "High income: nonOECD",]$Income.Group <- "2_High_nonOECD" 
+#gdp_edu[gdp_edu$Income.Group == "Upper middle income",]$Income.Group <- "3_UpperMiddle" 
+#gdp_edu[gdp_edu$Income.Group == "High income: OECD",]$Income.Group <- "4_High_OECD" 
+#gdp_edu[gdp_edu$Income.Group == "High income: OECD",]$Income.Group <- "5_High_OECD" 
+
+
+```
+Data is now gathered, cleaned, merged into one data frame
+
+```{r}
+
 sort_gdp_edu <- gdp_edu[order(gdp_edu$economy_dollars),] 
 
 
@@ -182,6 +195,7 @@ summary_table
 barplot(summary_table,legend = T, beside = T, main = 'income by quintile')
 
 library(vcd)
-mosaic(summary_table, color = TRUE)
-assoc(summary_table, shade=TRUE) 
+
+mosaicplot(summary_table, color = TRUE)
+
 ```
