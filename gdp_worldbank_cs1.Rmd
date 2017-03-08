@@ -155,18 +155,16 @@ sort_xxx
 
 ```
 
-
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-  
 __Quartile Summary__  
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-  
 
+```{r}
+
 sort_gdp_edu_by_rank <- gdp_edu[order(gdp_edu$rank),] 
 
-
 n_ranks <- dim(gdp_edu)[1]
-
 quint <- c(0 : (n_ranks-1))
-
 quint <- as.integer(quint/(n_ranks/5) ) + 1
 
 sort_gdp_edu_by_rank <- cbind (sort_gdp_edu_by_rank, quint)
@@ -177,10 +175,13 @@ hgh_rank_lower_middle_income <- sort_gdp_edu_by_rank[
 
 sgebr <- sort_gdp_edu_by_rank
 
-``` {r}
-summary_table <- table(sgebr$quint, sgebr$Income.Group)
 
+summary_table <- table(sgebr$quint, sgebr$Income.Group)
 summary_table
 
+barplot(summary_table,legend = T, beside = T, main = 'income by quintile')
 
+library(vcd)
+mosaic(summary_table, color = TRUE)
+assoc(summary_table, shade=TRUE) 
 ```
