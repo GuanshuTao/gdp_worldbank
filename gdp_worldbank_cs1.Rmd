@@ -175,8 +175,12 @@ hgh_rank_lower_middle_income <- sort_gdp_edu_by_rank[
 										sort_gdp_edu_by_rank$Income.Group == "Lower middle income"
 										& quint == 1,]
 
+s_df <- aggregate(sort_gdp_edu_by_rank,
+				by = list(Income.Group, quint),
+				FUN = length(Income.Group) )
 
-hr_lmi <- sort_gdp_edu_by_rank %>% group_by(quint, Income.Group) %>% summarize(
+
+hr_lmi <- sort_gdp_edu_by_rank %>% group_by(Income.Group, quint) %>% summarize(
 				n_pays = length(Income.Group))
 
 sort_hr_lmi <- hr_lmi[order(hr_lmi$n_pays),] 
