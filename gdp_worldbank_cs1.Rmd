@@ -1,10 +1,10 @@
 ---
-title: "gdp_worldbank_cs1"
+title: "proj1"
 author: "mcdevitt"
-date: "4 mars 2017"
-output: html_document
-toc: true
-keep_md: true
+date: "8 mars 2017"
+output:
+  md_document: default
+  html_document: default
 ---
 
 
