@@ -3,8 +3,8 @@ title: "proj1"
 author: "mcdevitt"
 date: "8 mars 2017"
 output:
-  md_document: default
   html_document: default
+  md_document: default
 ---
 
 
@@ -102,12 +102,15 @@ edu[5:width] <- NULL
 
 
 gdp_edu <- merge(gdp, edu, by.x = "country_code", by.y = "CountryCode")
+```
 
-#gdp_edu[gdp_edu$Income.Group == "High income: OECD",]$Income.Group <- "1_High_   OECD" 
-#gdp_edu[gdp_edu$Income.Group == "High income: nonOECD",]$Income.Group <- "2_High_nonOECD" 
-#gdp_edu[gdp_edu$Income.Group == "Upper middle income",]$Income.Group <- "3_UpperMiddle" 
-#gdp_edu[gdp_edu$Income.Group == "High income: OECD",]$Income.Group <- "4_High_OECD" 
-#gdp_edu[gdp_edu$Income.Group == "High income: OECD",]$Income.Group <- "5_High_OECD" 
+```{r}
+
+gdp_edu[gdp_edu$Income.Group == "High income: OECD",   ]$Income.Group <- "1_High_OECD" 
+gdp_edu[gdp_edu$Income.Group == "High income: nonOECD",]$Income.Group <- "2_High_nonOECD" 
+gdp_edu[gdp_edu$Income.Group == "Upper middle income", ]$Income.Group <- "3_Upper_Middle" 
+gdp_edu[gdp_edu$Income.Group == "Lower middle income", ]$Income.Group <- "4_Lower_Middle" 
+gdp_edu[gdp_edu$Income.Group == "Low income",          ]$Income.Group <- "5_Low_Income" 
 
 
 ```
@@ -116,7 +119,6 @@ Data is now gathered, cleaned, merged into one data frame
 ```{r}
 
 sort_gdp_edu <- gdp_edu[order(gdp_edu$economy_dollars),] 
-
 
 high_income_OECD <- gdp_edu[gdp_edu$Income.Group == "High income: OECD",]
 mean_oecd <-mean(high_income_OECD$rank)
