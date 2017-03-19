@@ -25,5 +25,22 @@ nonOECD" groups ?
 For convenience, the presentation of this information is separated into distinct sub-folders of this repository, to enable the reader to select just the elements most interesting for the reader's purpose and interestes. This is enabled by the following organization :  
 
 * data collection and cleaning is completed within the ./data folder 
- * within this folder, the code that harvest the data from the appropriate web-sites is available, along with 
- * this summary can be found here : https://github.com/bici-sancta/gdp_worldbank/blob/master/data/gather/read_clean_data.md
+ + within this folder, the code that harvest the data from the appropriate web-sites is available, along with 
+ + this summary can be found here : https://github.com/bici-sancta/gdp_worldbank/blob/master/data/gather/read_clean_data.md  
+ 
+   
+* analysis of the data to respond to the specifically requested resutls (i.e., the 7 questions above) is completed in the ./analysis folder
+ + this summary can be found here :  https://github.com/bici-sancta/gdp_worldbank/blob/master/analysis/analysis.md  
+ 
+   
+   
+* a summary statement related to the findings of this project are maintained in the ./presentation folder, and can be found here :   
+https://github.com/bici-sancta/gdp_worldbank/blob/master/presentation/presentation.md  
+
+
+* and finally, in order to facilitate the execution of this analysis, within the RStudio environment, the Makefile in this repository main folder provides the ability to complete the execution from the singular Makefile : https://github.com/bici-sancta/gdp_worldbank/blob/master/Makefile  
+
+
+
+
+ 
