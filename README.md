@@ -10,8 +10,6 @@ Secondly, the data set World Bank EdStats All Indicator Query that describes ind
 
 The specific questions to be addressed by this evaluation are :
 
-
-
 1 : How many countries have matched data between the GDP Ranking and the Educational Data ?  
 2 : For ascendingly sorted GDPs, which country is the 13th ranked GDP  ?  
 3 : What are the average GDP rankings for the "High income: OECD" and "High income:
@@ -25,16 +23,25 @@ nonOECD" groups ?
 For convenience, the presentation of this information is separated into distinct sub-folders of this repository, to enable the reader to select just the elements most interesting for the reader's purpose and interestes. This is enabled by the following organization :  
 
 ## __Data Collection & Cleaning__  
+=======
+##__Data Collection__  
+>>>>>>> ccfef3a17c9e3c910c69f38c09fcaf77e9811eec
 * data collection and cleaning is completed within the ./data folder 
  + within this folder, the code that harvest the data from the appropriate web-sites is available, along with 
  + this summary can be found here : https://github.com/bici-sancta/gdp_worldbank/blob/master/data/gather/read_clean_data.md  
  
 ## __Analysis__  
+=======
+##__Analysis__  
+>>>>>>> ccfef3a17c9e3c910c69f38c09fcaf77e9811eec
 * analysis of the data to respond to the specifically requested resutls (i.e., the 7 questions above) is completed in the ./analysis folder
  + this summary can be found here :  https://github.com/bici-sancta/gdp_worldbank/blob/master/analysis/analysis.md  
    
    
 ## __Summary Presentation__  
+=======
+##__Summary Presentation__  
+>>>>>>> ccfef3a17c9e3c910c69f38c09fcaf77e9811eec
 * a summary statement related to the findings of this project are maintained in the ./presentation folder, and can be found here :   
 https://github.com/bici-sancta/gdp_worldbank/blob/master/presentation/presentation.md  
 
