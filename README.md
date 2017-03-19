@@ -1,51 +1,28 @@
 # gdp_worldbank
 WorldBank GDP data sets and evaluation
 
+This project evaluates realtionships between national economic indicators and educational levels attained by different populations.  
+The data that is considered for this evaluation is based on data sets provided by the World Bank.  
 
-Note: If you encounter NAs for some cases, please continue the analysis with the non-missing
-values. However, please include code to count the number of missing values for each variable
-used in the analysis.
-Questions on Merged Data
-1 Merge the data based on the country shortcode. How many of the IDs match?
-2 Sort the data frame in ascending order by GDP (so United States is last). What is the 13th
-country in the resulting data frame?
-3 What are the average GDP rankings for the "High income: OECD" and "High income:
-nonOECD" groups?
-4 Show the distribution of GDP value for all the countries and color plots by income group. Use
-ggplot2 to create your plot.
-5 Provide summary statistics of GDP by income groups.
-6 Cut the GDP ranking into 5 separate quantile groups. Make a table versus Income.Group.
-How many countries are Lower middle income but among the 38 nations with highest
-GDP?
-Deliverable: Markdown file uploaded to GitHub containing the following
- Introduction to the project. The introduction should not start with “For my project I ...”.
-The introduction needs to be written as if you are presenting the work to someone who
-has given you the data to analyze and wants to understand the result. In other words,
-pretend it’s not a case study for a course. Pretend it’s a presentation for a client.
- Code for downloading, tidying, and merging data in a R Markdown file. The code should
-be in a make file style, meaning that the source RMD document pulls in separate files for
-importing data, cleaning the data, and data analysis.
- Brief explanations of the purpose of the code. The explanations should appear as a
-sentence or two before or after the code chunk. Even though you will not be hiding the
-code chunks (so that I can see the code), you need to pretend that the client can’t see
-them.
- Code to answer the five questions above (plus the answers) in the same R Markdown file.
- Clear answers to the questions. Just the code to answer the questions is not enough, even
-if the code is correct and gives the correct answer. You must state the answer in a
-complete sentence outside the code chunk.
- Conclusion to the project. Summarize your findings from this exercise.
+Specifically, the 1st data set included is : GDP Ranking for the nations of the world. This data set is annualized, time series data, which is generally updated on a quarterly basis. The data includes information from 217 national economies. The data is a subset of the data supporting evaluations of Economy & Growth.
+
+Secondly, the data set World Bank EdStats All Indicator Query that describes indicators related to education levels attained. This data set includes information from 214 economies, is also annual, time-series data which is generally updated on a quarterly basis.
+
+The specific questions to be addressed by this evaluation are :
 
 
 
+1 : How many countries have matched data between the GDP Ranking and the Educational Data ?  
+2 : For ascendingly sorted GDPs, which country is the 13th ranked GDP  ?  
+3 : What are the average GDP rankings for the "High income: OECD" and "High income:
+nonOECD" groups ?  
+4 : Depiction of the distribution of GDP values for all the countries, identified by income group.  
+5 : Summary statistics of GDP by income groups are provided.  
+6 : Tabluar description of the GDP ranking by Income Group, based on quintile groups.  
+7 : The identified of the number of countries with "Lower middle income" and also within the group of (top 38) nations with highest GDP ?  
 
-Rubric (100 points total):
-• Assignment is submitted via a link to GitHub that results in a readable file (0 or 5 points)
-• I can run the code on either my Mac or my PC with no modifications, except setting the
-working directory (0 – doesn’t run to 5 – runs with no errors).
-• Grammatical/spelling mistakes (0 – lots of mistakes to 5 - no mistakes)
-• Introduction to the case study provides context for the data (5 points)
-• Correct answers for each of the five questions (5 points for first question, 10 points each
-for others, 45 points total). This piece includes a clear explanation of output and/or
-graphics.
-• Correctly commented code in modular style (30 points)
-• Conclusion summarizes findings from the exercise in paragraph form (5 points).
+
+For convenience, the presentation of this information is separated into distinct sub-folders of this repository, to enable the reader to select just the elements most interesting for the reader's purpose and interestes. This is enabled by the following organization :  
+
+* data collection and cleaning is completed within the ./data folder 
+ * within this folder, the code that harvest the data from the appropriate web-sites is available, along with 
