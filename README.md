@@ -26,3 +26,4 @@ For convenience, the presentation of this information is separated into distinct
 
 * data collection and cleaning is completed within the ./data folder 
  * within this folder, the code that harvest the data from the appropriate web-sites is available, along with 
+ * this summary can be found here : https://github.com/bici-sancta/gdp_worldbank/blob/master/data/gather/read_clean_data.md
