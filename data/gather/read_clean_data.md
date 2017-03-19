@@ -1,49 +1,5 @@
-    library(repmis)
-    library(RCurl)
-    library(methods)
-    library(ggplot2)
-    library(pastecs)
-
-    require (reshape2)
-    require (xtable)
-    require (ascii)
-
-
-
-    ## R Markdown
-
-    # ...   -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-    # ...       - some data sets
-    # ...   -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
-    # ...   gdp data
-    #           https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv
-    #
-
-    #,Gross domestic product 2012,,,,,,,,
-    #,,,,,,,,,
-    #,,,,(millions of,,,,,
-    #,Ranking,,Economy,US dollars),,,,,
-    #,,,,,,,,,
-    #USA,1,,United States," 16,244,600 ",,,,,
-    #CHN,2,,China," 8,227,103 ",,,,,
-    #JPN,3,,Japan," 5,959,718 ",,,,,
-    #DEU,4,,Germany," 3,428,131 ",,,,,
-
-    #           http://data.worldbank.org/data-catalog/GDP-ranking-table
-
-
-    # ... educational data
-
-    #CountryCode,Long Name,Income Group,Region,Lending category,Other groups,Currency Unit,Latest population census,Latest household survey,Special Notes,National accounts base year,National accounts reference year,System of National Accounts,SNA price valuation,Alternative conversion factor,PPP survey year,Balance of Payments Manual in use,External debt Reporting status,System of trade,Government Accounting concept,IMF data dissemination standard,Source of most recent Income and expenditure data,Vital registration complete,Latest agricultural census,Latest industrial data,Latest trade data,Latest water withdrawal data,2-alpha code,WB-2 code,Table Name,Short Name
-    #ABW,Aruba,High income: nonOECD,Latin America & Caribbean,,,Aruban florin,2000,,,1995,,,,,,,,Special,,,,,,,2008,,AW,AW,Aruba,Aruba
-    #ADO,Principality of Andorra,High income: nonOECD,Europe & Central Asia,,,Euro,Register based,,,,,,,,,,,General,,,,Yes,,,2006,,AD,AD,Andorra,Andorra
-    #AFG,Islamic State of Afghanistan,Low income,South Asia,IDA,HIPC,Afghan afghani,1979,"MICS, 2003",Fiscal year end: March 20; reporting period for national accounts data: FY.,2002/2003,,,VAB,,,,Actual,General,Consolidated,GDDS,,,,,2008,2000,AF,AF,Afghanistan,Afghanistan
-    #AGO,People's Republic of Angola,Lower middle income,Sub-Saharan Africa,IDA,,Angolan kwanza,1970,"MICS, 2001, MIS, 2006/07",,1997,,,VAP,1991-96,2005,BPM5,Actual,Special,,GDDS,"IHS, 2000",,1964-65,,1991,2000,AO,AO,Angola,Angola
-
-    #       https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv
-    #       http://data.worldbank.org/data-catalog/ed-stats
-
+R Markdown
+----------
 
     # ...   -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
     # ...   gdp data in & clean
@@ -89,13 +45,13 @@
 
     gdp_edu <- merge(gdp, edu, by.x = "country_code", by.y = "CountryCode")
 
-
     gdp_edu[gdp_edu$Income.Group == "High income: OECD",   ]$Income.Group <- "1_High_OECD" 
     gdp_edu[gdp_edu$Income.Group == "High income: nonOECD",]$Income.Group <- "2_High_nonOECD" 
     gdp_edu[gdp_edu$Income.Group == "Upper middle income", ]$Income.Group <- "3_Upper_Middle" 
     gdp_edu[gdp_edu$Income.Group == "Lower middle income", ]$Income.Group <- "4_Lower_Middle" 
     gdp_edu[gdp_edu$Income.Group == "Low income",          ]$Income.Group <- "5_Low_Income" 
 
+Data is now gathered, cleaned, merged into one data frame
 
     str(gdp_edu)
 
@@ -136,6 +92,4 @@
 
     boxplot(log10(gdp_edu$economy_dollars) ~ gdp_edu$Region)
 
-![](read_clean_files/figure-markdown_strict/unnamed-chunk-1-1.png)
-
-    save(gdp_edu, file = "gdp_edu.Rda")
+![](read_clean_data_files/figure-markdown_strict/unnamed-chunk-1-1.png)
