@@ -16,7 +16,7 @@ DATA_DIR = $(RDIR)/data
 
 GATHER_DIR = $(DATA_DIR)/gather
 GATHER_SOURCE = $(wildcard $(GATHER_DIR)/*.Rmd)
-GATHER_OUT = $(GATHER_SOURCE:.Rmd=.docx)
+GATHER_OUT = $(GATHER_SOURCE:.Rmd=.md)
 
 PROCESS_DIR = $(DATA_DIR)/process
 PROCESS_SOURCE = $(wildcard $(PROCESS_DIR)/*.Rmd)
@@ -54,8 +54,8 @@ $(ANALYSIS_DIR)/%.docx:$(ANALYSIS_DIR)/%.Rmd $(PROCESS_OUT)
 $(PRESENTATION_DIR)/%.docx:$(PRESENTATION_DIR)/%.Rmd $(ANALYSIS_OUT)
 	$(KNIT) 
 	
-#clean:
-#	rm -fv $(GATHER_OUT)
-#	rm -fv $(PROCESS_OUT)
-#	rm -fv $(ANALYSIS_OUT)
-#	rm -fv $(PRESENTATION_OUT)
+clean:
+	rm -fv $(GATHER_OUT)
+	rm -fv $(PROCESS_OUT)
+	rm -fv $(ANALYSIS_OUT)
+	rm -fv $(PRESENTATION_OUT)

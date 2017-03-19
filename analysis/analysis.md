@@ -9,7 +9,7 @@ R Markdown
 
 nonOECD" groups?
 
-    load("../gdp_edu.Rda")
+    load("../data/gdp_edu.Rda")
 
     sort_gdp_edu <- gdp_edu[order(gdp_edu$economy_dollars),] 
 
