@@ -51,6 +51,8 @@ R Markdown
     gdp_edu[gdp_edu$Income.Group == "Lower middle income", ]$Income.Group <- "4_Lower_Middle" 
     gdp_edu[gdp_edu$Income.Group == "Low income",          ]$Income.Group <- "5_Low_Income" 
 
+    save(gdp_edu, file = "../gdp_edu.Rda")
+
 Data is now gathered, cleaned, merged into one data frame
 
     str(gdp_edu)
