@@ -1,5 +1,5 @@
 ---
-title: "proj1"
+title: "case study 1 - data gather & clean"
 author: "mcdevitt"
 date: "8 mars 2017"
 output:
@@ -11,27 +11,19 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(repmis)
 library(RCurl)
-library(methods)
-library(ggplot2)
-library(pastecs)
-
-require (reshape2)
-require (xtable)
-require (ascii)
-
 ```
 
 
-## R Markdown
+## Data Collection & Cleaning
 
 
 ```{r read_data, message = FALSE}
-
 
 # ...	-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 # ...	gdp data in & clean
 # ...	-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
+# ...	pull in World Bank GDP data set
 url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv"
 download.file(url, destfile = "./GDP.csv")
 gdp <- read.csv("GDP.csv", sep = ",",
@@ -39,15 +31,19 @@ gdp <- read.csv("GDP.csv", sep = ",",
 				skip = 5,
 				stringsAsFactors = FALSE)
 
+# ...	assign names to data columns
 gdp_names <- c("country_code", "rank", "aaa", "country_name", "economy_dollars")
 names(gdp) <- gdp_names
 
+# ...	assign rank as integers, eliminate data rows with invalid rank values
 gdp$rank <- as.integer(gdp$rank)
 gdp <- gdp[!is.na(gdp$rank),]
 
+# ...	remove , from date income data field and convert to numeric
 gdp$economy_dollars <- gsub(",", "", gdp$economy_dollars)
 gdp$economy_dollars <- as.numeric(gdp$economy_dollars)
 
+# ...	eliminate 3rd column and columns 6 --> width, as they are not needed
 gdp[3] <- NULL
 width <- dim(gdp)[2]
 gdp[5:width] <- NULL
@@ -56,6 +52,8 @@ gdp[5:width] <- NULL
 # ...	educational data in & clean
 # ...	-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
+
+# ...	pull in World Bank Educational data set
 url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv"
 download.file(url, destfile = "./EDSTATS_Country.csv")
 edu <- read.csv("EDSTATS_Country.csv", sep = ",",
@@ -63,15 +61,20 @@ edu <- read.csv("EDSTATS_Country.csv", sep = ",",
 				skip = 0,
 				stringsAsFactors = FALSE)
 
+# ...	eliminate columns 5 --> width, as they are not needed
 width <- dim(edu)[2]
 edu[5:width] <- NULL
 
-
+# ...	 merge GDP & Educational data into 1 data frame, matched by country code
 gdp_edu <- merge(gdp, edu, by.x = "country_code", by.y = "CountryCode")
+
 ```
 
 
 ```{r rename_variables}
+
+# ...	rename income group variaables, so that they display in
+# ...	alphabetic order related to income levels
 
 gdp_edu[gdp_edu$Income.Group == "High income: OECD",   ]$Income.Group <- "1_High_OECD" 
 gdp_edu[gdp_edu$Income.Group == "High income: nonOECD",]$Income.Group <- "2_High_nonOECD" 
@@ -79,22 +82,37 @@ gdp_edu[gdp_edu$Income.Group == "Upper middle income", ]$Income.Group <- "3_Uppe
 gdp_edu[gdp_edu$Income.Group == "Lower middle income", ]$Income.Group <- "4_Lower_Middle" 
 gdp_edu[gdp_edu$Income.Group == "Low income",          ]$Income.Group <- "5_Low_Income" 
 
-save(gdp_edu, file = "../gdp_edu.Rda")
+
 ```
-Data is now gathered, cleaned, merged into one data frame
+### Data is now gathered, cleaned, merged into one data frame  
 
 ```{r}
+
+# ...	save merged data frame into .Rda file for future ease of use
+
+save(gdp_edu, file = "../gdp_edu.Rda")
+```
+#### Data set is now saved in file : ./data/gdp_edu.Rda  
+
+#### Summary statistics of saved data set :  
+```{r}
 str(gdp_edu)
-
 summary(gdp_edu)
-
-names(gdp_edu)
-
-dim(gdp_edu)
-
-boxplot(log10(gdp_edu$economy_dollars) ~ gdp_edu$Region)
-
-
 ```
 
+#### These are the data names in the data set :  
+```{r}
+names(gdp_edu)
+```
 
+#### Data set size :  `r dim(gdp_edu)`  
+
+#### Data sets displayed in boxplot [log(income)] for the population :  
+
+`r boxplot(log10(gdp_edu$economy_dollars) ~ gdp_edu$Region)`  
+
+
+
+# ...	-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+# ...	this completes the data gather & clean operations
+# ...	-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-

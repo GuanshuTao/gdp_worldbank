@@ -16,7 +16,7 @@ DATA_DIR = $(RDIR)/data
 
 GATHER_DIR = $(DATA_DIR)/gather
 GATHER_SOURCE = $(wildcard $(GATHER_DIR)/*.Rmd)
-GATHER_OUT = $(GATHER_SOURCE:.Rmd=.md)
+GATHER_OUT = $(GATHER_SOURCE:.Rmd=.docx)
 
 PROCESS_DIR = $(DATA_DIR)/process
 PROCESS_SOURCE = $(wildcard $(PROCESS_DIR)/*.Rmd)
