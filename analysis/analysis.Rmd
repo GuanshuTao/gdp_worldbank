@@ -94,7 +94,7 @@ gdp_edu_table <- gdp_edu %>% group_by(Income.Group) %>% summarize(
 				max_gdp = max(economy_dollars),
 				stdev = sd(economy_dollars))
 				
-sort_gdp_edu_table <- gdp_edu_table[order(xxx$mean_gdp),] 
+sort_gdp_edu_table <- gdp_edu_table[order(gdp_edu_table$mean_gdp),] 
 				
 sort_gdp_edu_table
 

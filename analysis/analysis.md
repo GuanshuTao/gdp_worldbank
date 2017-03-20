@@ -30,12 +30,38 @@ nonOECD" groups?
 
 ### 4 Show the distribution of GDP value for all the countries and color plots by income group.
 
-![](analysis_files/figure-markdown_strict/distribution_plots-1.png)![](analysis_files/figure-markdown_strict/distribution_plots-2.png)![](analysis_files/figure-markdown_strict/distribution_plots-3.png)
+    ggplot(gdp_edu, aes(x = country_code, y = log10(economy_dollars), shape = Income.Group, color = Income.Group )) + geom_point()
+
+![](analysis_files/figure-markdown_strict/distribution_plots-1.png)
+
+    ggplot(gdp_edu, aes(x = Income.Group, y = log10(economy_dollars), fill = Income.Group)) + geom_boxplot() +
+        guides(fill=FALSE)
+
+![](analysis_files/figure-markdown_strict/distribution_plots-2.png)
+
+    ggplot(gdp_edu, aes(x = log10(economy_dollars), fill =  Income.Group)) + geom_density(alpha=.3)
+
+![](analysis_files/figure-markdown_strict/distribution_plots-3.png)
 
 **... Summary Statistics**
 --------------------------
 
 ### 5 Provide summary statistics of GDP by income groups.
+
+    library('dplyr')
+
+    gdp_edu_table <- gdp_edu %>% group_by(Income.Group) %>% summarize(
+                    n_nation = length(Income.Group),
+                    min_gdp = min(economy_dollars),
+                    qtr_01 = quantile(economy_dollars)[[2]],
+                    mean_gdp = mean(economy_dollars),
+                    qtr_03 = quantile(economy_dollars)[[4]],
+                    max_gdp = max(economy_dollars),
+                    stdev = sd(economy_dollars))
+                    
+    sort_gdp_edu_table <- gdp_edu_table[order(gdp_edu_table$mean_gdp),] 
+                    
+    sort_gdp_edu_table
 
     ## # A tibble: 5 × 8
     ##     Income.Group n_nation min_gdp    qtr_01   mean_gdp    qtr_03  max_gdp

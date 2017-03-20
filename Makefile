@@ -28,7 +28,7 @@ ANALYSIS_OUT = $(ANALYSIS_SOURCE:.Rmd=.docx)
 
 PRESENTATION_DIR = $(RDIR)/presentation
 PRESENTATION_SOURCE = $(wildcard $(PRESENTATION_DIR)/*.Rmd)
-PRESENTATION_OUT = $(PRESENTATION_SOURCE:.Rmd=.html)
+PRESENTATION_OUT = $(PRESENTATION_SOURCE:.Rmd=.docx)
 
 KNIT = Rscript -e "require(rmarkdown); render('$<')"
 

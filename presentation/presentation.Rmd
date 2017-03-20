@@ -9,20 +9,8 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
-library(repmis)
-library(RCurl)
-library(methods)
 library(ggplot2)
-library(pastecs)
-library(vcd)
-require (reshape2)
-require (xtable)
-require (ascii)
 
-home_dir <- "~/_smu/msds 6306 - data science/case_study_1/gdp_worldbank"
-data_dir <- paste0(home_dir, "/data")
-analysis_dir <- paste0(home_dir, "/analysis")
-summary_dir <- paste0(home_dir, "/summary")
 ```
 
 ```{r }
@@ -41,6 +29,15 @@ This is understood from the following graphics :
 
 ggplot(gdp_edu, aes(x = Income.Group, y = log10(economy_dollars), fill = Income.Group)) + geom_boxplot() +
     guides(fill=FALSE)
+
+
+# ...	to identify the quintile gdp ranking ... create new data frame, sorted by rank
+sort_gdp_edu_by_rank <- gdp_edu[order(gdp_edu$rank),] 
+n_ranks <- dim(gdp_edu)[1]
+quint <- c(0 : (n_ranks-1))
+quint <- as.integer(quint/(n_ranks/5) ) + 1
+sort_gdp_edu_by_rank <- cbind (sort_gdp_edu_by_rank, quint)
+sgebr <- sort_gdp_edu_by_rank
 
 plot(log10(sgebr$economy_dollars) ~ sgebr$rank, col = sgebr$quint)
 plot(sgebr$economy_dollars ~ sgebr$rank, col = sgebr$quint)
