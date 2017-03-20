@@ -19,10 +19,8 @@ Analysis Requested
 nonOECD" groups?
 
     high_income_OECD <- gdp_edu[gdp_edu$Income.Group == "High income: OECD",]
-    mean_oecd <-mean(high_income_OECD$rank)
 
     high_income_nonOECD <- gdp_edu[gdp_edu$Income.Group == "High income: nonOECD",]
-    mean_nonoecd <-mean(high_income_nonOECD$rank)
 
 #### The mean ranking for HighIncome:OECD nations is : **NaN**
 
