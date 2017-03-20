@@ -1,7 +1,6 @@
 ####################
-# Makefile
+# Makefile template adapted from the following ...
 # Copyright Brian A. Fannin 2015
-#
 # https://www.r-bloggers.com/makefiles-and-rmarkdown/
 #
 # alter the “Project Options” section of the “Tools/Project Options”#

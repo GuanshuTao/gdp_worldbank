@@ -31,14 +31,8 @@ This is understood from the following graphics :
     plot(sgebr$economy_dollars ~ sgebr$rank, col = sgebr$quint)
 
 ![](presentation_files/figure-markdown_strict/distribution_plots-3.png)
-\#\#\# \_\_The implication from the above figure is that there is a
-clear separation of the High Income:OECD nations in terms of size of
-economy (as measured by GDP, in log(US Dollars), in comparison to the
-remaining income groups. The High Income:nonOECD, Upper Middle, and
-Lower Middle grouped nations have similar economy sizes (in the range of
-1E4.5 millions of US dollars. The Low Income group remains separated
-from the remaining groups with economy sizes in the range of &lt; 1E4
-millions of US dollars.
+
+### The implication from the above figure is that there is a clear separation of the High Income:OECD nations in terms of size of economy (as measured by GDP, in log(US Dollars), in comparison to the remaining income groups. The High Income:nonOECD, Upper Middle, and Lower Middle grouped nations have similar economy sizes (in the range of 1E4.5 millions of US dollars. The Low Income group remains separated from the remaining groups with economy sizes in the range of &lt; 1E4 millions of US dollars.
 
 The line plot, showing the income sizes in sorted order (log $) shows
 the separation on log scale, useful for statistical difference

@@ -43,7 +43,11 @@ plot(log10(sgebr$economy_dollars) ~ sgebr$rank, col = sgebr$quint)
 plot(sgebr$economy_dollars ~ sgebr$rank, col = sgebr$quint)
 
 ```
-### __The implication from the above figure is that there is a clear separation of the High Income:OECD nations in terms of size of economy (as measured by GDP, in log(US Dollars), in comparison to the remaining income groups. The High Income:nonOECD, Upper Middle, and Lower Middle grouped nations have similar economy sizes (in the range of 1E4.5 millions of US dollars. The Low Income group remains separated from the remaining groups with economy sizes in the range of < 1E4 millions of US dollars.
+
+  
+    
+    
+### The implication from the above figure is that there is a clear separation of the High Income:OECD nations in terms of size of economy (as measured by GDP, in log(US Dollars), in comparison to the remaining income groups. The High Income:nonOECD, Upper Middle, and Lower Middle grouped nations have similar economy sizes (in the range of 1E4.5 millions of US dollars. The Low Income group remains separated from the remaining groups with economy sizes in the range of < 1E4 millions of US dollars.
 
 The line plot, showing the income sizes in sorted order (log $) shows the separation on log scale, useful for statistical difference evaluations.
 However, the line plot showing the income sizes in sorted order (actual $ scale, millions) shows in real terms the very real, and significant differences in nations' economies, with USA and China clearly separated from the rest of the world economies.
