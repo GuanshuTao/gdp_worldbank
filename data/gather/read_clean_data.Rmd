@@ -11,6 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(repmis)
 library(RCurl)
+library(graphics)
 ```
 
 
