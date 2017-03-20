@@ -30,7 +30,7 @@ For convenience, the presentation of this information is separated into distinct
  
 ## __Analysis__  
 
-* analysis of the data to respond to the specifically requested resutls (i.e., the 7 questions above) is completed in the ./analysis folder
+* analysis of the data to respond to the specifically requested results (i.e., the 7 questions above) is completed in the ./analysis folder
  + this summary can be found here :  https://github.com/bici-sancta/gdp_worldbank/blob/master/analysis/analysis.md  
    
    
