@@ -1,17 +1,22 @@
-R Markdown
-----------
-
-#### 1 : Merge the data based on the country shortcode. How many of the IDs match?
-
-#### 2 : Sort the data frame in ascending order by GDP (so United States is last). What is the 13th country in the resulting data frame?
-
-#### 3 : What are the average GDP rankings for the "High income: OECD" and "High income:
-
-nonOECD" groups?
-
+    # ...   load the saved data frame ...
     load("../data/gdp_edu.Rda")
 
+Analysis Requested
+------------------
+
+### 1 : Merge the data based on the country shortcode. How many of the IDs match?
+
+#### Number of countries with matched records between the GDP and Educational data sets : 189
+
+### 2 : Sort the data frame in ascending order by GDP (so United States is last). What is the 13th country in the resulting data frame?
+
     sort_gdp_edu <- gdp_edu[order(gdp_edu$economy_dollars),] 
+
+#### The 13th ranked nation by GDP is : **St. Kitts and Nevis**
+
+### 3 : What are the average GDP rankings for the "High income: OECD" and "High income:
+
+nonOECD" groups?
 
     high_income_OECD <- gdp_edu[gdp_edu$Income.Group == "High income: OECD",]
     mean_oecd <-mean(high_income_OECD$rank)
@@ -19,28 +24,22 @@ nonOECD" groups?
     high_income_nonOECD <- gdp_edu[gdp_edu$Income.Group == "High income: nonOECD",]
     mean_nonoecd <-mean(high_income_nonOECD$rank)
 
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-  
-**Distributional plots**  
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+#### The mean ranking for HighIncome:OECD nations is : **`mean_oecd`**
 
-4 Show the distribution of GDP value for all the countries and color
-plots by income group. Use ggplot2 to create your plot.
+#### The mean ranking for HighIncome:nonOECD nations is : **`mean_nonoecd`**
+
+### **Distributional plots**
+
+### 4 Show the distribution of GDP value for all the countries and color plots by income group.
 
 ![](analysis_files/figure-markdown_strict/distribution_plots-1.png)![](analysis_files/figure-markdown_strict/distribution_plots-2.png)![](analysis_files/figure-markdown_strict/distribution_plots-3.png)
 
-... -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-=============================================================================
+**... Summary Statistics**
+--------------------------
 
-... summary statistics
-======================
+### 5 Provide summary statistics of GDP by income groups.
 
-... -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-=============================================================================
-
-5 Provide summary statistics of GDP by income groups. 6 Cut the GDP
-ranking into 5 separate quantile groups. Make a table versus
-Income.Group. How many countries are Lower middle income but among the
-38 nations with highest GDP?
+### 6 Cut the GDP ranking into 5 separate quantile groups. Make a table versus Income.Group. How many countries are Lower middle income but among the 38 nations with highest GDP ?
 
     ## # A tibble: 5 × 8
     ##     Income.Group n_pays min_gdp    qtr_01   mean_gdp    qtr_03  max_gdp
