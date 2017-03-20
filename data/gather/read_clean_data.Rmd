@@ -109,10 +109,13 @@ names(gdp_edu)
 
 #### Data sets displayed in boxplot [log(income)] for the population :  
 
-`r boxplot(log10(gdp_edu$economy_dollars) ~ gdp_edu$Region)`  
-
+```{r}
+boxplot(log10(gdp_edu$economy_dollars) ~ gdp_edu$Region)
 
 
 # ...	-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 # ...	this completes the data gather & clean operations
 # ...	-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+```
+
+
