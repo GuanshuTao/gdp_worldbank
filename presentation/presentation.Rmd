@@ -39,8 +39,20 @@ quint <- as.integer(quint/(n_ranks/5) ) + 1
 sort_gdp_edu_by_rank <- cbind (sort_gdp_edu_by_rank, quint)
 sgebr <- sort_gdp_edu_by_rank
 
-plot(log10(sgebr$economy_dollars) ~ sgebr$rank, col = sgebr$quint)
-plot(sgebr$economy_dollars ~ sgebr$rank, col = sgebr$quint)
+
+plot(log10(sgebr$economy_dollars) ~ sgebr$rank,
+	 col = sgebr$quint,
+	 main= "Log10(GDP) vs. Economy Rank",
+     xlab= "Rank",
+     ylab= "Log10(GDP), Millions US $",
+     pch = 19, cex = 1)
+
+plot(sgebr$economy_dollars ~ sgebr$rank,
+ 	 col = sgebr$quint,
+	 main= "GDP vs. Economy Rank",
+     xlab= "Rank",
+     ylab= "GDP, Millions US $",
+     cex = 1)
 
 ```
 
