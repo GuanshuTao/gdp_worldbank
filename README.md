@@ -40,7 +40,7 @@ For convenience, the presentation of this information is separated into distinct
 https://github.com/bici-sancta/gdp_worldbank/blob/master/presentation/presentation.md  
 
 
-## __makefile faciliation__  
+## __makefile facilitation__  
 * and finally, in order to facilitate the execution of this analysis, within the RStudio environment, the Makefile in this repository main folder provides the ability to complete the execution from the singular Makefile : https://github.com/bici-sancta/gdp_worldbank/blob/master/Makefile  
 
 
