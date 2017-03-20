@@ -65,7 +65,7 @@ high_income_nonOECD <- gdp_edu[gdp_edu$Income.Group == "2_High_nonOECD",]
 
 ### 4 Show the distribution of GDP value for all the countries and color plots by income group.
 
-```{r distribution_plots, echo = FALSE, message = FALSE}
+```{r distribution_plots, message = FALSE}
 
 ggplot(gdp_edu, aes(x = country_code, y = log10(economy_dollars), shape = Income.Group, color = Income.Group )) + geom_point()
 
@@ -81,11 +81,11 @@ ggplot(gdp_edu, aes(x = log10(economy_dollars), fill =  Income.Group)) + geom_de
 
 ### 5 Provide summary statistics of GDP by income groups.  
 
-```{r sort_and_group, echo = FALSE, message = FALSE}
+```{r sort_and_group, message = FALSE}
 
 library('dplyr')
 
-xxx <- gdp_edu %>% group_by(Income.Group) %>% summarize(
+gdp_edu_table <- gdp_edu %>% group_by(Income.Group) %>% summarize(
 				n_nation = length(Income.Group),
 				min_gdp = min(economy_dollars),
 				qtr_01 = quantile(economy_dollars)[[2]],
@@ -94,9 +94,9 @@ xxx <- gdp_edu %>% group_by(Income.Group) %>% summarize(
 				max_gdp = max(economy_dollars),
 				stdev = sd(economy_dollars))
 				
-sort_xxx <- xxx[order(xxx$mean_gdp),] 
+sort_gdp_edu_table <- gdp_edu_table[order(xxx$mean_gdp),] 
 				
-sort_xxx
+sort_gdp_edu_table
 
 ```
 
