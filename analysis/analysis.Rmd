@@ -121,12 +121,12 @@ quint <- as.integer(quint/(n_ranks/5) ) + 1
 # ...	bind the quintile group as additional column in data frame
 sort_gdp_edu_by_rank <- cbind (sort_gdp_edu_by_rank, quint)
 
-hgh_rank_lower_middle_income <- sort_gdp_edu_by_rank[
+high_rank_lower_middle_income <- sort_gdp_edu_by_rank[
 										sort_gdp_edu_by_rank$Income.Group == "4_Lower_Middle"
 										& quint == 1,]
 ```
 
-#### List of countries are Lower middle income but among the 38 nations with highest GDP  are : __`r  hgh_rank_lower_middle_income$country_name`__     
+#### List of countries are Lower middle income but among the 38 nations with highest GDP  are : __`r  high_rank_lower_middle_income$Long.Name`__     
 
 
 ```{r}

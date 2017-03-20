@@ -66,11 +66,11 @@ Make a table versus Income.Group.
     # ...   bind the quintile group as additional column in data frame
     sort_gdp_edu_by_rank <- cbind (sort_gdp_edu_by_rank, quint)
 
-    hgh_rank_lower_middle_income <- sort_gdp_edu_by_rank[
+    high_rank_lower_middle_income <- sort_gdp_edu_by_rank[
                                             sort_gdp_edu_by_rank$Income.Group == "4_Lower_Middle"
                                             & quint == 1,]
 
-#### List of countries are Lower middle income but among the 38 nations with highest GDP are : **China, India, Indonesia, Thailand, Egypt, Arab Rep.**
+#### List of countries are Lower middle income but among the 38 nations with highest GDP are : **People's Republic of China, Republic of India, Republic of Indonesia, Kingdom of Thailand, Arab Republic of Egypt**
 
     # ...   shorten the data frame name, for convenience
     sgebr <- sort_gdp_edu_by_rank
