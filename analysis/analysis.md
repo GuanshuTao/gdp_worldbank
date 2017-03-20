@@ -24,9 +24,9 @@ nonOECD" groups?
     high_income_nonOECD <- gdp_edu[gdp_edu$Income.Group == "High income: nonOECD",]
     mean_nonoecd <-mean(high_income_nonOECD$rank)
 
-#### The mean ranking for HighIncome:OECD nations is : **`mean_oecd`**
+#### The mean ranking for HighIncome:OECD nations is : **NaN**
 
-#### The mean ranking for HighIncome:nonOECD nations is : **`mean_nonoecd`**
+#### The mean ranking for HighIncome:nonOECD nations is : **NaN**
 
 ### **Distributional plots**
 
