@@ -37,37 +37,45 @@ nonOECD" groups?
 
 ### 5 Provide summary statistics of GDP by income groups.
 
-### 6 Cut the GDP ranking into 5 separate quantile groups. Make a table versus Income.Group. How many countries are Lower middle income but among the 38 nations with highest GDP ?
-
     ## # A tibble: 5 × 8
-    ##     Income.Group n_pays min_gdp    qtr_01   mean_gdp    qtr_03  max_gdp
-    ##            <chr>  <int>   <dbl>     <dbl>      <dbl>     <dbl>    <dbl>
-    ## 1   5_Low_Income     37     596   3814.00   14410.78   17204.0   116355
-    ## 2 2_High_nonOECD     23    2584  12838.00  104349.83  131204.5   711050
-    ## 3 3_Upper_Middle     45     228   9613.00  231847.84  205789.0  2252664
-    ## 4 4_Lower_Middle     54      40   2548.75  256663.48   81448.0  8227103
-    ## 5    1_High_OECD     30   13579 211146.75 1483917.13 1480047.2 16244600
+    ##     Income.Group n_nation min_gdp    qtr_01   mean_gdp    qtr_03  max_gdp
+    ##            <chr>    <int>   <dbl>     <dbl>      <dbl>     <dbl>    <dbl>
+    ## 1   5_Low_Income       37     596   3814.00   14410.78   17204.0   116355
+    ## 2 2_High_nonOECD       23    2584  12838.00  104349.83  131204.5   711050
+    ## 3 3_Upper_Middle       45     228   9613.00  231847.84  205789.0  2252664
+    ## 4 4_Lower_Middle       54      40   2548.75  256663.48   81448.0  8227103
+    ## 5    1_High_OECD       30   13579 211146.75 1483917.13 1480047.2 16244600
     ## # ... with 1 more variables: stdev <dbl>
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-  
 **Quartile Summary**  
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-  
+\#\#\# 6 Cut the GDP ranking into 5 separate quantile groups.  
+Make a table versus Income.Group.
 
+    # ...   to identify the quintile gdp ranking ... create new data frame, sorted by rank
     sort_gdp_edu_by_rank <- gdp_edu[order(gdp_edu$rank),] 
 
+    # ...   count the number of ranks in the data set
     n_ranks <- dim(gdp_edu)[1]
+
+    # ...   assign ranked order quintile (1..5) to each data row
     quint <- c(0 : (n_ranks-1))
     quint <- as.integer(quint/(n_ranks/5) ) + 1
 
+    # ...   bind the quintile group as additional column in data frame
     sort_gdp_edu_by_rank <- cbind (sort_gdp_edu_by_rank, quint)
 
     hgh_rank_lower_middle_income <- sort_gdp_edu_by_rank[
-                                            sort_gdp_edu_by_rank$Income.Group == "Lower middle income"
+                                            sort_gdp_edu_by_rank$Income.Group == "4_Lower_Middle"
                                             & quint == 1,]
 
+#### List of countries are Lower middle income but among the 38 nations with highest GDP are : **China, India, Indonesia, Thailand, Egypt, Arab Rep.**
+
+    # ...   shorten the data frame name, for convenience
     sgebr <- sort_gdp_edu_by_rank
 
-
+    # ...   create summary table of quintile, income groups
     summary_table <- table(sgebr$quint, sgebr$Income.Group)
     summary_table
 
@@ -79,14 +87,12 @@ nonOECD" groups?
     ##   4           1              5              8              8           16
     ##   5           0              1              9             16           11
 
+    # ...   make some plots to visualize the data by quintile groups
+
     barplot(summary_table,legend = T, beside = T, main = 'income by quintile')
 
-![](analysis_files/figure-markdown_strict/quintiles-1.png)
-
-    library(vcd)
-
-    ## Loading required package: grid
+![](analysis_files/figure-markdown_strict/unnamed-chunk-4-1.png)
 
     mosaicplot(summary_table, color = TRUE)
 
-![](analysis_files/figure-markdown_strict/quintiles-2.png)
+![](analysis_files/figure-markdown_strict/unnamed-chunk-4-2.png)
