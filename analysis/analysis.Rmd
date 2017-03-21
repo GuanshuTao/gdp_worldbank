@@ -9,6 +9,8 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
+options(digits=0)
+
 library(repmis)
 library(RCurl)
 library(methods)
@@ -109,6 +111,7 @@ The summary statistics include :
 - Maximum GDP in the group  
 
 ```{r}
+
 
 sort_gdp_edu_table
 

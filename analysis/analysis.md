@@ -39,9 +39,9 @@ nonOECD" groups?
 
     high_income_nonOECD <- gdp_edu[gdp_edu$Income.Group == "2_High_nonOECD",]
 
-#### The mean ranking for HighIncome:OECD nations is : **32.9666667**
+#### The mean ranking for HighIncome:OECD nations is : **33**
 
-#### The mean ranking for HighIncome:nonOECD nations is : **91.9130435**
+#### The mean ranking for HighIncome:nonOECD nations is : **92**
 
 ### **Distributional plots**
 
@@ -91,13 +91,13 @@ The summary statistics include :
     sort_gdp_edu_table
 
     ## # A tibble: 5 × 8
-    ##     Income.Group n_nation min_gdp    qtr_01   mean_gdp    qtr_03  max_gdp
-    ##            <chr>    <int>   <dbl>     <dbl>      <dbl>     <dbl>    <dbl>
-    ## 1   5_Low_Income       37     596   3814.00   14410.78   17204.0   116355
-    ## 2 2_High_nonOECD       23    2584  12838.00  104349.83  131204.5   711050
-    ## 3 3_Upper_Middle       45     228   9613.00  231847.84  205789.0  2252664
-    ## 4 4_Lower_Middle       54      40   2548.75  256663.48   81448.0  8227103
-    ## 5    1_High_OECD       30   13579 211146.75 1483917.13 1480047.2 16244600
+    ##     Income.Group n_nation  min_gdp   qtr_01 mean_gdp   qtr_03  max_gdp
+    ##            <chr>    <int>    <dbl>    <dbl>    <dbl>    <dbl>    <dbl>
+    ## 1   5_Low_Income       37 %#4.0-1e %#4.0-1e %#4.0-1e %#4.0-1e %#4.0-1e
+    ## 2 2_High_nonOECD       23 %#4.0-1e %#4.0-1e %#4.0-1e %#4.0-1e %#4.0-1e
+    ## 3 3_Upper_Middle       45 %#4.0-1e %#4.0-1e %#4.0-1e %#4.0-1e %#4.0-1e
+    ## 4 4_Lower_Middle       54 %#4.0-1e %#4.0-1e %#4.0-1e %#4.0-1e %#4.0-1e
+    ## 5    1_High_OECD       30 %#4.0-1e %#4.0-1e %#4.0-1e %#4.0-1e %#4.0-1e
     ## # ... with 1 more variables: stdev <dbl>
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-  
