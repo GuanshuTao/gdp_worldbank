@@ -3,7 +3,6 @@ title: "World Bank - Income Distributions and GDP"
 author: "mcdevitt"
 date: "8 mars 2017"
 output:
-  html_document: default
   md_document: default
 ---
 

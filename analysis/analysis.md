@@ -12,6 +12,23 @@ Analysis Requested
 
     sort_gdp_edu <- gdp_edu[order(gdp_edu$economy_dollars),] 
 
+    head(sort_gdp_edu[,1:4], 13)
+
+    ##     country_code rank                   country_name economy_dollars
+    ## 173          TUV  190                         Tuvalu              40
+    ## 92           KIR  189                       Kiribati             175
+    ## 113          MHL  188               Marshall Islands             182
+    ## 137          PLW  187                          Palau             228
+    ## 155          STP  186    S\xe3o Tom\xe9 and Principe             263
+    ## 59           FSM  185          Micronesia, Fed. Sts.             326
+    ## 169          TON  184                          Tonga             472
+    ## 46           DMA  183                       Dominica             480
+    ## 39           COM  182                        Comoros             596
+    ## 184          WSM  181                          Samoa             684
+    ## 180          VCT  180 St. Vincent and the Grenadines             713
+    ## 69           GRD  178                        Grenada             767
+    ## 93           KNA  178            St. Kitts and Nevis             767
+
 #### The 13th ranked nation by GDP is : **St. Kitts and Nevis**
 
 ### 3 : What are the average GDP rankings for the "High income: OECD" and "High income:
@@ -60,7 +77,17 @@ nonOECD" groups?
                     stdev = sd(economy_dollars))
                     
     sort_gdp_edu_table <- gdp_edu_table[order(gdp_edu_table$mean_gdp),] 
-                    
+
+#### Summary statistics for the 5 income groups are shown in following table.
+
+The summary statistics include :  
+- Number of countries in each group  
+- Minimum GDP in each group (Millions $ US)  
+- 25th percentile GDP  
+- Mean GDP  
+- 75th percentile GDP  
+- Maximum GDP in the group
+
     sort_gdp_edu_table
 
     ## # A tibble: 5 × 8
@@ -96,7 +123,27 @@ Make a table versus Income.Group.
                                             sort_gdp_edu_by_rank$Income.Group == "4_Lower_Middle"
                                             & quint == 1,]
 
-#### List of countries are Lower middle income but among the 38 nations with highest GDP are : **People's Republic of China, Republic of India, Republic of Indonesia, Kingdom of Thailand, Arab Republic of Egypt**
+#### The list of countries which are Lower middle income but among the 38 nations with highest GDP are :
+
+    print(sprintf(" N  : Rank  |            Country Name        | GDP (US$M)"))
+
+    ## [1] " N  : Rank  |            Country Name        | GDP (US$M)"
+
+    for (indx in 1 : dim(high_rank_lower_middle_income)[1])
+    {
+        print(sprintf("%2d : %5d | %30s | %8d", indx,
+                      high_rank_lower_middle_income$rank[indx],
+                      high_rank_lower_middle_income$Long.Name[indx],
+                      high_rank_lower_middle_income$economy_dollars[indx]))
+    }
+
+    ## [1] " 1 :     2 |     People's Republic of China |  8227103"
+    ## [1] " 2 :    10 |              Republic of India |  1841710"
+    ## [1] " 3 :    16 |          Republic of Indonesia |   878043"
+    ## [1] " 4 :    31 |            Kingdom of Thailand |   365966"
+    ## [1] " 5 :    38 |         Arab Republic of Egypt |   262832"
+
+#### The following figures provide some visualizations of the distribution of countries, depicting the relationship between the quintiles of GDP distribition to income levels as identified from the World Bank Educational data sets. There is, as has been demonstrated above, a strong association between national GDP and per capita income level groupings.
 
     # ...   shorten the data frame name, for convenience
     sgebr <- sort_gdp_edu_by_rank
@@ -117,8 +164,8 @@ Make a table versus Income.Group.
 
     barplot(summary_table,legend = T, beside = T, main = 'income by quintile')
 
-![](analysis_files/figure-markdown_strict/unnamed-chunk-4-1.png)
+![](analysis_files/figure-markdown_strict/unnamed-chunk-6-1.png)
 
     mosaicplot(summary_table, color = TRUE)
 
-![](analysis_files/figure-markdown_strict/unnamed-chunk-4-2.png)
+![](analysis_files/figure-markdown_strict/unnamed-chunk-6-2.png)
