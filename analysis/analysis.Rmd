@@ -3,6 +3,7 @@ title: "World Bank - Income Distributions and GDP"
 author: "mcdevitt"
 date: "8 mars 2017"
 output:
+  html_document: default
   md_document: default
 ---
 
@@ -41,6 +42,8 @@ load("../data/gdp_edu.Rda")
 ```{r}
 
 sort_gdp_edu <- gdp_edu[order(gdp_edu$economy_dollars),] 
+
+head(sort_gdp_edu[,1:4], 13)
 
 ```
 
@@ -95,7 +98,19 @@ gdp_edu_table <- gdp_edu %>% group_by(Income.Group) %>% summarize(
 				stdev = sd(economy_dollars))
 				
 sort_gdp_edu_table <- gdp_edu_table[order(gdp_edu_table$mean_gdp),] 
-				
+```
+
+#### Summary statistics for the 5 income groups are shown in following table.  
+The summary statistics include :  
+- Number of countries in each group  
+- Minimum GDP in each group (Millions $ US)  
+- 25th percentile GDP  
+- Mean GDP  
+- 75th percentile GDP  
+- Maximum GDP in the group  
+
+```{r}
+
 sort_gdp_edu_table
 
 ```
@@ -126,8 +141,22 @@ high_rank_lower_middle_income <- sort_gdp_edu_by_rank[
 										& quint == 1,]
 ```
 
-#### List of countries are Lower middle income but among the 38 nations with highest GDP  are : __`r  high_rank_lower_middle_income$Long.Name`__     
+#### The list of countries which are Lower middle income but among the 38 nations with highest GDP  are :  
 
+```{r}
+
+print(sprintf(" N  : Rank  |            Country Name        | GDP (US$M)"))
+for (indx in 1 : dim(high_rank_lower_middle_income)[1])
+{
+	print(sprintf("%2d : %5d | %30s | %8d", indx,
+				  high_rank_lower_middle_income$rank[indx],
+				  high_rank_lower_middle_income$Long.Name[indx],
+				  high_rank_lower_middle_income$economy_dollars[indx]))
+}
+
+```
+
+#### The following figures provide some visualizations of the distribution of countries, depicting the relationship between the quintiles of GDP distribition to income levels as identified from the World Bank Educational data sets. There is, as has been demonstrated above, a strong association between national GDP and per capita income level groupings.  
 
 ```{r}
 # ...	shorten the data frame name, for convenience
