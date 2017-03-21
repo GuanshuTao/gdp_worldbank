@@ -9,8 +9,6 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
-options(digits=0)
-
 library(repmis)
 library(RCurl)
 library(methods)
@@ -99,23 +97,21 @@ gdp_edu_table <- gdp_edu %>% group_by(Income.Group) %>% summarize(
 				stdev = sd(economy_dollars))
 				
 sort_gdp_edu_table <- gdp_edu_table[order(gdp_edu_table$mean_gdp),] 
-```
 
 #### Summary statistics for the 5 income groups are shown in following table.  
-The summary statistics include :  
-- Number of countries in each group  
-- Minimum GDP in each group (Millions $ US)  
-- 25th percentile GDP  
-- Mean GDP  
-- 75th percentile GDP  
-- Maximum GDP in the group  
-
-```{r}
-
+#The summary statistics include :  
+#- Number of countries in each group  
+#- Minimum GDP in each group (Millions $ US)  
+#- 25th percentile GDP  
+#- Mean GDP  
+#- 75th percentile GDP  
+#- Maximum GDP in the group  
 
 sort_gdp_edu_table
 
 ```
+
+
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-  
 __Quartile Summary__  
